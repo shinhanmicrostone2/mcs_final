@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>AI Law Assistant</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+</head>
+<body>
+  <!-- 상단 네이비 스트립 -->
+  <div class="top-strip">
+    <!-- 모바일에서 좌측 사이드바 열기 -->
+    <button class="burger" id="sidebar-toggle" aria-label="채팅 목록 열기" title="채팅 목록 열기">☰</button>
+    <div class="top-right">박주혁 님</div>
+  </div>
+
+  <!-- 좌측 고정/슬라이드 메뉴 -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sb-brand">AI Law Assistant</div>
+    <div class="sb-divider"></div>
+    <button class="newchat" id="new-chat"><span class="plus">＋</span> New Chat</button>
+
+    <!-- 대화 목록 (JS 렌더링) -->
+    <div class="list" id="conv-list"></div>
+
+    <button class="logout">로그아웃</button>
+  </aside>
+
+  <!-- 슬라이드 시 어둡게 가리는 스크림 -->
+  <div class="scrim" id="scrim"></div>
+
+  <!-- 메인 -->
+  <div class="content">
+    <div class="center-rail">
+      <main>
+        <!-- ✅ 초기 대화 비어있음 -->
+        <div class="chat-wrap" id="chat"></div>
+
+        <!-- 입력창 -->
+        <div class="composer">
+          <textarea id="composer" placeholder="메시지를 입력하세요..."></textarea>
+          <button class="send" id="send-btn" title="보내기" aria-label="보내기">➤</button>
+        </div>
+      </main>
+
+      <!-- 오른쪽 법률 링크 (질문 시 자동 갱신) -->
+      <aside class="rail" id="law-rail">
+        <h3>법률 링크</h3>
+      </aside>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='app.js') }}" defer></script>
+</body>
+</html>
+
+

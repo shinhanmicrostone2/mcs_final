@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="AI Law Assistant">
+    <title>로그인</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: white;
+        }
+        /*상단*/
+        .firstbar {
+            background-color: #24457B;
+            color: white;
+            padding: 20px 40px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        /*중앙 로그인*/
+        .log {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 150px;
+        }
+        .log h2 {
+            color: #24457B;
+            margin-bottom: 30px;
+        }
+        .log input {
+            width: 250px;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #24457B;
+            border-radius: 4px;
+            background-color: white;
+            font-size: 12px;
+            color: #24457B;
+        }
+        .log button {
+            width: 250px;
+            padding: 10px;
+            background-color: #24457B;
+            color: white;
+            border-radius: 20px;
+            font-size: 12px;
+        }
+        .log button:hover {
+            background-color: #24457B;
+        }
+    </style>
+</head>
+<body>
+    <div class="firstbar">
+        AI Law Assistant
+    </div>
+
+    <div class="log">
+        <h2>로그인</h2>
+        <input type="email" placeholder="EMAIL" id="email">
+        <input type="password" placeholder="PASSWD" id="password">
+        <button id="login-btn">로그인</button>
+        <div style="margin-top: 20px; text-align: center;">
+            <a href="/signup" style="color: #24457B; text-decoration: none; font-size: 14px;">회원가입</a>
+        </div>
+    </div>
+    
+    <script src="{{ url_for('static', filename='login.js') }}" defer></script>
+</body>
+</html>

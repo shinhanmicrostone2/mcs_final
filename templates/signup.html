@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>AI Law Assistant - 회원가입</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='signup.css') }}" />
+</head>
+<body>
+  <!-- 상단 네이비 스트립 -->
+  <div class="top-strip">
+    <div class="top-left">AI Law Assistant</div>
+  </div>
+
+  <!-- 메인 콘텐츠 -->
+  <div class="signup-content">
+    <div class="signup-container">
+      <h1 class="signup-title">회원가입</h1>
+      
+      <form class="signup-form" id="signup-form">
+        <div class="form-group">
+          <label for="email">이메일</label>
+          <input type="email" id="email" name="email" placeholder="이메일" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="name">이름</label>
+          <input type="text" id="name" name="name" placeholder="이름" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="password">비밀번호</label>
+          <input type="password" id="password" name="password" placeholder="비밀번호" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="confirm-password">비밀번호 확인</label>
+          <input type="password" id="confirm-password" name="confirm-password" placeholder="비밀번호 확인" required>
+        </div>
+        
+        <button type="submit" class="signup-btn">회원가입</button>
+      </form>
+      
+      <div class="login-link">
+        이미 계정이 있으신가요? <a href="/">로그인</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='signup.js') }}" defer></script>
+</body>
+</html>

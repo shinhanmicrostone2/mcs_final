@@ -1,0 +1,219 @@
+:root{
+  --page:#ffffff;
+  --navy:#0d3b66;                 /* 상단/버튼 네이비 */
+  --sidebar-navy:#3C547C;         /* 좌측 메뉴 색 */
+  --chat:#f1f4f8;                 /* 입력칸·사용자 버블 배경 */
+  --rail:#e7edf6;                 /* 법률 링크 패널 */
+  --text:#0f172a;                 /* 기본 본문색(거의 검정) */
+  --muted:#6b7280;
+  --shadow:0 10px 24px rgba(21,36,59,.08),0 2px 6px rgba(21,36,59,.06);
+
+  --sidebar-w:320px;
+  --sidebar-shrink:1cm;           /* 좌측 폭 총 1cm 축소 */
+  --strip-h:2.5cm;                /* 상단 네이비 높이 */
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; background:var(--page); color:var(--text);
+  font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Noto Sans KR",Segoe UI,Roboto,Helvetica,Arial,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+}
+
+/* 상단 네이비 스트립 */
+.top-strip{
+  position:fixed; top:0; left:0; right:0; height:var(--strip-h);
+  background:var(--navy); z-index:40;
+  display:flex; align-items:center; justify-content:flex-end;
+  color:#fff; font-weight:800; padding-right:0.5cm;
+}
+.top-strip .burger{
+  position:absolute; left:12px; top:50%; transform:translateY(-50%);
+  width:42px; height:42px; border:none; border-radius:10px;
+  background:transparent; color:#fff; font-size:20px; cursor:pointer;
+}
+.top-strip .burger:hover{ background:rgba(255,255,255,.12) }
+.top-right{ pointer-events:none } /* 오른쪽 텍스트만 */
+
+ /* 좌측 사이드바 */
+.sidebar{
+  position:fixed; left:0; top:0; bottom:0; z-index:60; /* 슬라이드 시 위로 */
+  width:calc(var(--sidebar-w) - var(--sidebar-shrink));
+  background:var(--sidebar-navy); color:#eaf1ff; box-shadow:var(--shadow);
+  border-radius:0; padding:18px 16px; display:flex; flex-direction:column;
+  transition:transform .28s ease;
+}
+.sb-brand{
+  position:relative; left:1.5cm; top:0.3cm;
+  font-weight:800; font-size:18px; letter-spacing:.2px;
+  margin-bottom:calc(1.5cm - 0.4cm);
+}
+.sb-divider{
+  height:1px; background:rgba(255,255,255,.45);
+  width:calc(100% + 32px); margin-left:-16px; margin-right:-16px;
+  margin-bottom:0.4cm;
+}
+.newchat{
+  display:flex; align-items:center; gap:10px; justify-content:center;
+  height:calc(44px + 0.1cm); border-radius:24px; cursor:pointer; font-weight:700; color:#fff;
+  background:var(--navy); border:1px solid rgba(255,255,255,.12);
+  margin-bottom:12px;
+}
+.newchat .plus{width:26px;height:26px;border-radius:13px;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center}
+
+.section-title{color:#cfe0ff;font-size:12px;font-weight:800;letter-spacing:.5px;margin:12px 0 6px}
+.list{flex:1; overflow:auto; padding-right:4px}
+
+/* 대화 목록 */
+.row{
+  display:grid; grid-template-columns:24px 1fr 24px;
+  gap:10px; align-items:center; color:#eef3ff;
+  padding:10px 6px; border-radius:10px; cursor:pointer;
+}
+.row:hover{background:rgba(255,255,255,.10)}
+.row.active{background:rgba(255,255,255,.16)}
+.icon{width:20px;height:20px;opacity:.95}
+.textcol{min-width:0; display:flex; flex-direction:column}
+.title{white-space:nowrap; overflow:hidden; text-overflow:ellipsis; font-weight:700}
+.preview{white-space:nowrap; overflow:hidden; text-overflow:ellipsis; font-size:11.5px; color:#d7e3ff; opacity:.85; margin-top:2px}
+
+/* 케밥 … */
+.kebab-link{
+  display:inline-block; width:24px; text-align:center;
+  color:rgba(255,255,255,.85); font-weight:900; letter-spacing:2px; text-decoration:none;
+  cursor:pointer;
+}
+.kebab-link:hover{color:#fff}
+.logout{
+  width:100%;height:40px;border:none;border-radius:999px;color:#0d2a4a;background:#ffffff;font-weight:800;cursor:pointer
+}
+.logout:hover{filter:brightness(1.02)}
+
+/* 메인 레이아웃 */
+.content{
+  margin-left:calc((var(--sidebar-w) - var(--sidebar-shrink)) + 24px);
+  padding-top:calc(var(--strip-h) + 16px);
+  padding-bottom:16px;
+}
+.center-rail{display:grid; grid-template-columns:minmax(0,1fr) 360px; gap:24px}
+
+/* 채팅 */
+.chat-wrap{display:flex; flex-direction:column; gap:12px; margin-right:0.5cm}
+.msg{
+  display:inline-block; width:fit-content; max-width:100%;
+  border-radius:16px; padding:12px 14px; line-height:1.6;
+  box-shadow:var(--shadow); border:1px solid #d9e2f1; position:relative;
+}
+.msg.user{ align-self:flex-end; background:var(--chat); font-weight:800; color:var(--text) }
+
+.ai-row{display:flex; align-items:flex-start; gap:0.3cm}
+.avatar{
+  flex:0 0 auto; width:32px; height:32px; border-radius:50%;
+  background:#e9eef5; color:#375a7f; font-weight:700;
+  display:flex; align-items:center; justify-content:center;
+  box-shadow:var(--shadow); margin-top:2px;
+}
+.msg.ai{ background:#fff; padding-bottom:56px }
+.label{display:block; font-weight:800; margin-bottom:6px}
+
+.chat-actions{display:flex; gap:10px; margin-top:4px}
+.btn{
+  appearance:none;border:none;padding:10px 14px;border-radius:14px;
+  font-weight:700;font-size:13px;cursor:pointer
+}
+.btn.primary{background:var(--navy);color:#fff}
+.btn.primary:hover{filter:brightness(1.06)}
+.btn:active{transform:translateY(1px)}
+
+/* 말풍선 내부 우하단 퀵액션 */
+.quick-in{
+  position:absolute; right:12px; bottom:10px;
+  display:flex; align-items:center; gap:14px; color:#334155;
+}
+.quick-in .link-like{cursor:pointer; text-decoration:underline; font-weight:700; font-size:12px}
+.quick-in .emoji{font-size:18px; line-height:1; filter:grayscale(1); cursor:pointer; transition:.15s ease}
+.quick-in .emoji.active{filter:none; transform:scale(1.05)}
+
+/* 입력창 */
+.composer{
+  margin-top:16px; background:var(--chat); border-radius:16px;
+  border:1px solid #d0dae8; box-shadow:var(--shadow);
+  padding:12px; display:flex; align-items:flex-end; gap:10px; margin-right:0.5cm;
+}
+.composer textarea{
+  font-family: inherit;   /* 본문(채팅내용)과 같은 폰트 */
+  font-size: inherit;     /* 본문과 같은 크기 */
+  line-height: inherit;   /* 본문과 같은 줄간격 */
+  color: inherit;         /* 본문과 같은 색상 */
+  border: none !important;
+  outline: none !important;
+  background: transparent !important;
+  flex: 1; min-height: 44px; max-height: 240px;
+  overflow: auto; resize: none;
+}
+.composer textarea::placeholder{color:#9aa6b2}
+.send{
+  flex:0 0 42px; width:42px; height:42px;
+  border-radius:12px; border:none; background:var(--navy);
+  color:#fff; font-weight:800; cursor:pointer; display:flex; align-items:center; justify-content:center;
+}
+
+/* placeholder도 동일 폰트로 보이게 */
+.composer textarea::placeholder{
+  font: inherit;
+  color:#9aa6b2;
+}
+
+/* 오른쪽 법률 링크 */
+.rail{
+  background:var(--rail); border-radius:18px; box-shadow:var(--shadow);
+  padding:16px; height:calc(100vh - var(--strip-h) - 32px);
+  position:sticky; top:calc(var(--strip-h) + 16px);
+  margin-top:16px; margin-right:0.5cm;
+}
+.rail h3{margin:4px 0 10px; color:var(--navy)}
+.rule{border-top:1px solid rgba(13,59,102,.25); padding-top:12px; margin-top:12px}
+.rule:first-of-type{border-top:none; padding-top:0; margin-top:0}
+.rule-link{
+  display:inline-block; font-weight:400; color:var(--text); font-size:inherit;
+  text-decoration:none; cursor:pointer; margin:0 0 6px;
+}
+.rule-link:hover{text-decoration:underline}
+.rail ul{margin:6px 0 0 18px}
+
+/* --- kebab dropdown (삭제 메뉴) --- */
+.kebab-menu{
+  position:fixed; z-index:9999; display:none;
+  background:#fff; color:#0f172a; border:1px solid #e2e8f0; border-radius:10px;
+  box-shadow:0 10px 24px rgba(21,36,59,.12),0 2px 6px rgba(21,36,59,.08);
+  padding:6px; min-width:96px;
+}
+.kebab-item{
+  display:block; width:100%; background:transparent; border:none; cursor:pointer;
+  text-align:left; padding:8px 10px; font-weight:700; font-size:13px; border-radius:8px;
+}
+.kebab-item:hover{ background:#f1f5f9 }
+
+/* 슬라이드용 스크림(모바일) */
+.scrim{ display:none } /* 기본은 숨김 */
+@media (max-width:1280px){
+  .rail{display:none}
+  .center-rail{grid-template-columns:1fr}
+  .composer{margin-right:0}
+  .chat-wrap{margin-right:0}
+}
+@media (max-width:1024px){
+  /* 기존엔 display:none이었는데, 슬라이드 애니메이션으로 변경 */
+  .sidebar{
+    transform:translateX(-100%);
+  }
+  .sidebar.open{
+    transform:translateX(0);
+  }
+  .content{margin-left:12px; margin-right:12px}
+
+  .scrim{
+    position:fixed; inset:0; background:rgba(15,23,42,.35);
+    z-index:55; display:none;
+  }
+  .scrim.show{ display:block }
+}
