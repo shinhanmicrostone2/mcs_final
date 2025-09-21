@@ -216,37 +216,9 @@ ai-law-assistant/
 - **SQL 인젝션 방지** - 파라미터화된 쿼리 사용
 - **CORS 설정** - 크로스 오리진 요청 제어
 
-## 🚀 배포
-
-### Docker 배포 (권장)
-```bash
-# Dockerfile 생성 후
-docker build -t ai-law-assistant .
-docker run -p 5000:5000 ai-law-assistant
-```
-
-### 클라우드 배포
-- **AWS EC2** + **RDS MySQL**
-- **Google Cloud Platform** + **Cloud SQL**
-- **Azure** + **Azure Database for MySQL**
-
-## 🤝 기여하기
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
 ## 📝 라이선스
 
 이 프로젝트는 MIT 라이선스 하에 배포됩니다. 자세한 내용은 `LICENSE` 파일을 참조하세요.
-
-## 📞 문의
-
-- **프로젝트 관리자**: [Your Name](mailto:your.email@example.com)
-- **AI 모델 관련**: [AI Team](mailto:ai.team@example.com)
-- **버그 리포트**: [Issues](https://github.com/your-username/ai-law-assistant/issues)
 
 ## 🙏 감사의 말
 
