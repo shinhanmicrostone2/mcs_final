@@ -35,7 +35,11 @@ def logout():
 
     # 블랙리스트에 추가
     blacklist.add(token)
-    return jsonify({"message": "로그아웃 완료"}), 200
+    
+    # 쿠키 삭제
+    response = jsonify({"message": "로그아웃 완료"})
+    response.set_cookie('token', '', expires=0)
+    return response, 200
 
 
 

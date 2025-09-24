@@ -357,8 +357,6 @@
           <div class="msg ai">
             <div class="ai-content"></div>
             <div class="quick-in">
-              <span class="link-like">엑셀파일로 저장</span>
-              <span class="link-like">텍스트로저장</span>
               <span class="emoji">👍</span>
               <span class="emoji">👎</span>
             </div>
@@ -368,13 +366,7 @@
         chatWrap.appendChild(row);
       }
     });
-    const actions = document.createElement('div');
-    actions.className = 'chat-actions';
-    actions.innerHTML = `
-      <button class="btn primary">고소장 작성하기</button>
-      <button class="btn primary">진술서 작성하기</button>
-    `;
-    chatWrap.appendChild(actions);
+    // 고소장 및 진술서 생성 버튼 제거됨
     chatWrap.scrollTop = chatWrap.scrollHeight;
   }
 

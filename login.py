@@ -65,7 +65,9 @@ def login():
             algorithm="HS256"
         )
 
-        return jsonify({"token": token}), 200
+        response = jsonify({"token": token})
+        response.set_cookie('token', token, httponly=True, secure=False, samesite='Lax')
+        return response, 200
 
     finally:
         cursor.close()

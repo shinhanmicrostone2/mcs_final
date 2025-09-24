@@ -114,3 +114,23 @@ def get_user_by_id(user_id):
     finally:
         cursor.close()
         conn.close()
+
+def verify_jwt_token(token):
+    """JWT 토큰을 검증하고 사용자 정보를 반환합니다."""
+    import jwt
+    import os
+    from datetime import datetime
+    
+    try:
+        secret_key = os.getenv("SECRET_KEY", "shinhanmicrostone")
+        payload = jwt.decode(token, secret_key, algorithms=["HS256"])
+        
+        # 토큰이 유효하면 사용자 정보 반환
+        user_id = payload.get("user_id")
+        if user_id:
+            return get_user_by_id(user_id)
+        return None
+    except jwt.ExpiredSignatureError:
+        return None
+    except jwt.InvalidTokenError:
+        return None

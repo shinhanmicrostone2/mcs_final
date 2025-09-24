@@ -11,6 +11,20 @@
 
 AI Law Assistant는 형사법 전문 LLM과 ChatGPT를 결합한 지능형 법률 상담 서비스입니다. 사용자의 형사법 관련 질문에 대해 전문적이고 정확한 답변을 제공하며, 채팅 기록을 데이터베이스에 저장하여 지속적인 대화를 지원합니다.
 
+### 🖼️ 화면 구성
+
+#### 메인 화면
+![메인 화면](images/main-screen.png)
+*AI Law Assistant 메인 화면 - 사용자 이름 표시 및 채팅 인터페이스*
+
+#### 로그인 화면
+![로그인 화면](images/login-screen.png)
+*사용자 로그인 화면 - 이메일/비밀번호 입력*
+
+#### 회원가입 화면
+![회원가입 화면](images/signup-screen.png)
+*사용자 회원가입 화면 - 이메일/이름/비밀번호 입력*
+
 ### 🎯 주요 기능
 
 - **🔐 사용자 인증**: JWT 기반 로그인/로그아웃 시스템
@@ -96,7 +110,7 @@ CREATE DATABASE micro;
 USE micro;
 
 -- 사용자 테이블
-CREATE TABLE user (
+CREATE TABLE User (
     id INT AUTO_INCREMENT PRIMARY KEY,
     email VARCHAR(255) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL,
@@ -105,24 +119,24 @@ CREATE TABLE user (
 );
 
 -- 채팅방 테이블
-CREATE TABLE chatroom (
+CREATE TABLE ChatRoom (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
     title VARCHAR(255) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE
+    FOREIGN KEY (user_id) REFERENCES User(id) ON DELETE CASCADE
 );
 
 -- 채팅 메시지 테이블
-CREATE TABLE chatmessage (
+CREATE TABLE ChatMessage (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
     chat_room_id INT NOT NULL,
     question TEXT NOT NULL,
     response TEXT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE,
-    FOREIGN KEY (chat_room_id) REFERENCES chatroom(id) ON DELETE CASCADE
+    FOREIGN KEY (user_id) REFERENCES User(id) ON DELETE CASCADE,
+    FOREIGN KEY (chat_room_id) REFERENCES ChatRoom(id) ON DELETE CASCADE
 );
 ```
 
@@ -197,12 +211,14 @@ ai-law-assistant/
 
 ### 2. 로그인
 - 등록된 이메일과 비밀번호로 로그인
-- JWT 토큰 기반 세션 관리
+- JWT 토큰 기반 세션 관리 (쿠키에 자동 저장)
+- 로그인한 사용자 이름이 메인화면에 표시
 
 ### 3. 채팅 상담
 - "새 대화" 버튼으로 새로운 채팅방 생성
 - 형사법 관련 질문 입력
 - AI가 전문적인 답변 제공
+- AI 응답에 대한 좋아요/싫어요 피드백 가능
 
 ### 4. 채팅 기록 관리
 - 이전 채팅방 목록 확인
@@ -211,10 +227,11 @@ ai-law-assistant/
 
 ## 🔒 보안 기능
 
-- **JWT 토큰 인증** - 안전한 사용자 세션 관리
+- **JWT 토큰 인증** - 안전한 사용자 세션 관리 (쿠키 기반)
 - **비밀번호 해싱** - Werkzeug 보안 해싱
 - **SQL 인젝션 방지** - 파라미터화된 쿼리 사용
-- **CORS 설정** - 크로스 오리진 요청 제어
+- **토큰 검증** - 메인 페이지 접근 시 JWT 토큰 자동 검증
+- **자동 로그아웃** - 토큰 만료 시 자동 로그인 페이지 리다이렉트
 
 ## 📝 라이선스
 
