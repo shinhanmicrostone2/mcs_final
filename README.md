@@ -233,23 +233,12 @@ ai-law-assistant/
 - **토큰 검증** - 메인 페이지 접근 시 JWT 토큰 자동 검증
 - **자동 로그아웃** - 토큰 만료 시 자동 로그인 페이지 리다이렉트
 
-## 📝 라이선스
-
-이 프로젝트는 MIT 라이선스 하에 배포됩니다. 자세한 내용은 `LICENSE` 파일을 참조하세요.
-
-## 🙏 감사의 말
-
-- **Hugging Face** - Transformers 라이브러리
-- **OpenAI** - ChatGPT API
-- **Flask Community** - 웹 프레임워크
-- **MySQL** - 데이터베이스 시스템
-
 ---
 
 <div align="center">
 
 **⭐ 이 프로젝트가 도움이 되었다면 Star를 눌러주세요! ⭐**
 
-Made with ❤️ by [Your Team Name]
+Made with ❤️ by eAIght
 
 </div>
